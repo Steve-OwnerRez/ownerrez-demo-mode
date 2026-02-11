@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OwnerRez – Demo Mode Pro
 // @namespace    http://ownerrez.com/
-// @version      2.0
+// @version      2.1
 // @description  Toggleable demo mode with disable-markup and OR header styling
 // @match        *://*.ownerrez.com/*
 // @run-at       document-start
@@ -49,15 +49,22 @@ observer.observe(document.documentElement, {
 });
 
 /* ---------------------------
-   KEYBOARD TOGGLE (Press D)
+   KEYBOARD TOGGLE (Press Ctrl+Shift+D)
 ---------------------------- */
 
 document.addEventListener('keydown', function (e) {
-    if (e.key.toLowerCase() === 'd' && !e.ctrlKey && !e.metaKey && !e.altKey) {
+    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+
+    const modifierPressed = isMac
+        ? e.metaKey && e.shiftKey
+        : e.ctrlKey && e.shiftKey;
+
+    if (modifierPressed && e.key.toLowerCase() === 'd') {
         demoMode = !demoMode;
         applyDemoMode();
     }
 });
+
 
 /* ---------------------------
    STYLING
