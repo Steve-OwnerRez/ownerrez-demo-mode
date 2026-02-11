@@ -24,6 +24,9 @@ Internal demo mode userscript for OwnerRez.
 
 ## Version History
 
+### v2.1
+- Changed Keyboard toggle (Press Ctrl+Shift+D)
+
 ### v2.0
 - Stable demo mode implementation
 - Auto-enables `disable-markup`
