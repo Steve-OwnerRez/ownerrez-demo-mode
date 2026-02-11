@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         OwnerRez – Demo Mode Pro
 // @namespace    http://ownerrez.com/
-// @version      13.1
+// @version      2.0
 // @description  Toggleable demo mode with disable-markup and OR header styling
 // @match        *://*.ownerrez.com/*
 // @run-at       document-start
