@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         OwnerRez – Demo Mode Pro
 // @namespace    http://ownerrez.com/
-// @version      2.2
-// @description  Toggleable demo mode with disable-markup and OR header styling
+// @version      2.3
+// @description  Toggleable demo mode with persistent state, disable-markup and OR header styling
 // @match        *://*.ownerrez.com/*
 // @run-at       document-start
 // @grant        GM_addStyle
@@ -13,12 +13,26 @@
 // ==/UserScript==
 
 
+/* ============================================================
+   STATE MANAGEMENT (Persistent via localStorage)
+============================================================ */
 
-/* ---------------------------
-   STATE MANAGEMENT
----------------------------- */
+const STORAGE_KEY = 'or-demo-mode-enabled';
 
-let demoMode = true; // Default ON
+let demoMode = localStorage.getItem(STORAGE_KEY);
+
+// Default to true only if never set before
+if (demoMode === null) {
+    demoMode = true;
+    localStorage.setItem(STORAGE_KEY, 'true');
+} else {
+    demoMode = demoMode === 'true';
+}
+
+
+/* ============================================================
+   APPLY / REMOVE DEMO MODE
+============================================================ */
 
 function applyDemoMode() {
     if (!document.body) return;
@@ -32,9 +46,10 @@ function applyDemoMode() {
     }
 }
 
-/* ---------------------------
+
+/* ============================================================
    WAIT FOR APP LOAD
----------------------------- */
+============================================================ */
 
 const waitForApp = setInterval(() => {
     const app = document.querySelector('.app-body-container');
@@ -44,6 +59,7 @@ const waitForApp = setInterval(() => {
     }
 }, 200);
 
+
 /* Re-apply after SPA navigation */
 const observer = new MutationObserver(applyDemoMode);
 observer.observe(document.documentElement, {
@@ -51,9 +67,12 @@ observer.observe(document.documentElement, {
     subtree: true
 });
 
-/* ---------------------------
+
+/* ============================================================
    KEYBOARD TOGGLE (Press D)
----------------------------- */
+   - Will NOT fire inside input fields
+   - Will NOT fire with modifier keys
+============================================================ */
 
 document.addEventListener('keydown', function (e) {
     const target = e.target;
@@ -69,16 +88,17 @@ document.addEventListener('keydown', function (e) {
         e.key.toLowerCase() === 'd') {
 
         demoMode = !demoMode;
+        localStorage.setItem(STORAGE_KEY, demoMode.toString());
         applyDemoMode();
-        console.log("Demo Mode:", demoMode ? "ON" : "OFF");
+
+        console.log("OwnerRez Demo Mode:", demoMode ? "ON" : "OFF");
     }
 });
 
 
-
-/* ---------------------------
+/* ============================================================
    STYLING
----------------------------- */
+============================================================ */
 
 GM_addStyle(`
 
