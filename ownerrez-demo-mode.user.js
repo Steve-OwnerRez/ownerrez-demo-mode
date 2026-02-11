@@ -6,9 +6,10 @@
 // @match        *://*.ownerrez.com/*
 // @run-at       document-start
 // @grant        GM_addStyle
-// ==/UserScript==
 // @updateURL    https://raw.githubusercontent.com/Steve-OwnerRez/ownerrez-demo-mode/main/ownerrez-demo-mode.user.js
 // @downloadURL  https://raw.githubusercontent.com/Steve-OwnerRez/ownerrez-demo-mode/main/ownerrez-demo-mode.user.js
+// ==/UserScript==
+
 
 
 /* ---------------------------
