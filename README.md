@@ -24,6 +24,9 @@ Internal demo mode userscript for OwnerRez.
 
 ## Version History
 
+### v2.2
+- Changed Keyboard toggle back but added safeguard so it cannot be triggered in a form field (Press D to enable/disable Demo mode)
+
 ### v2.1
 - Changed Keyboard toggle (Press Ctrl+Shift+D)
 
