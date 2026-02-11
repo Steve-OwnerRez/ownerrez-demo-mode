@@ -22,6 +22,20 @@ Internal demo mode userscript for OwnerRez.
 - Press **D** to toggle it on/off
 - Works across page navigation
 
+## Version History
+
+### v2.0
+- Stable demo mode implementation
+- Auto-enables `disable-markup`
+- OR-branded muted green admin bar
+- Admin controls hidden
+- Keyboard toggle (Press D)
+- SPA navigation safe
+
+### v1.0
+- Initial personal demo script
+- Manual toggle via bookmarklet
+
 ## Notes
 
 This is an internal tool for OwnerRez demos and recordings.
